@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8" />
+    <title>挨踢民工团</title>
+    <meta name="author" content="可乐崽zZ" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="it,wow,魔兽,魔兽世界" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>挨踢民工团</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;挨踢民工团</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>挨踢民工团</h1>
+                <h3>从CSDN到艾泽拉斯，虚拟战场的真实友谊！</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2024/05/11/aboutus/">
+        <h2 class="post-title">“挨踢民工团”论坛 - 我们友谊的新家园</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/11
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>这是一个属于我们的特别空间，一个用于纪念我们之间深厚友谊的地方，一处可以分享过去、现在和未来的家园。</p>
+<p>论坛地址：<a target="_blank" rel="noopener" href="https://itwow.cn/">itwow.cn</a></p>
+<p>我们的故事始于2011年2月16日，一条 <a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/360044485">CSDN论坛的帖子</a> 将我与全国各地的游戏爱好者们联系在了一起。正是因为共同的兴趣和激情，我们组建了“挨踢民工团”游戏公会，并在魔兽世界中共同奋战。</p>
+<p>尽管岁月如梭，我们中的许多人都有了更多的工作和家庭责任，游戏时间也有所减少。但不变的是，我们通过微信群等保持线上联系，依旧不时地闲聊、分享生活点滴。我们自称为“最熟悉的陌生人”，每当有成员来到其他城市，我们总会尽力相聚（面基），这份友情也随之愈发深厚。</p>
+<p>现在，这个论坛将成为我们共同的回忆录，记录着每个人的故事、我们的笑声和那些难忘的游戏时光。这里不仅是分享过往的地方，更是我们计划未来、继续并肩作战的起点。</p>
+<p>在这个论坛上，你可以：</p>
+<p>•  分享你的个人故事和游戏经历。<br>•  讨论游戏策略和心得。<br>•  规划和组织线上或线下的聚会活动。<br>•  发布游戏相关的新闻和更新。<br>•  与公会成员交流日常生活，分享快乐和难过。</p>
+<p>希望这个论坛能够成为我们大家的精神家园，无论我们身在何处，无论时间如何流转，这里永远是我们回忆和继续书写友谊的地方。</p>
+<p>让我们在这里继续我们的旅程，共同创造更多美好的回忆！</p>
+<p>不管怎样，游戏始终是我们的共同语言，挨踢民工团，永远的家！</p>
+<p>期待在论坛上看到你们的身影！</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/05/11/aboutus/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/05/11/gallery/">
+        <h2 class="post-title">战斗与欢笑：挨踢民工团的游戏精彩瞬间</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/11
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>从我们在CSDN论坛的偶然邂逅，到在魔兽世界的携手征战，每一步坚实的足迹都绘制了我们今天深厚的友谊图谱。今天，我荣幸地邀请大家一同打开我们旅程的视觉纪念册，这里珍藏着我们每一个非凡时刻的快照。</p>
+<p>在这个专区，你会发现那些冻结在每一次点击、每一场冒险、每一次胜利与失落的印记。这些图像不仅捕捉了战斗的激烈和胜利的甜蜜，更显著的是，它们见证了我们作为团队同甘共苦的每分每秒。</p>
+<p>从紧张的激战到解放的笑声，从艾泽拉斯大陆的奇幻旅程到公会中的轻松时光，从新手村同心协力击败怪物到山巅一起饱览天际，每幅画面都是我们情谊的映射。我们从不相识的玩家转变为并肩作战的战友（网友），再成长为生活中不可或缺的挚友。每一幅图画背后，都隐藏着勇气、战斗、团结和友情的故事。</p>
+<p>这些珍藏的瞬间，不仅让我们重温十余年的友情与冒险，也希望它们能够触动你的心弦，正如它们初次触动我们的心灵一般。</p>
+<p>让我们以这些图像为媒介，不只是回味过往，更是激励我们展望未来，期待每一次的团聚和新的冒险。这个帖子不只是一个简单的留言板，它是对我们十年友谊和共同冒险历程的致敬！</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B8%B8%E6%88%8F%E6%88%AA%E5%9B%BE/" style="color: #03a9f4">游戏截图</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%B2%BE%E5%BD%A9%E7%9E%AC%E9%97%B4/" style="color: #00a596">精彩瞬间</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%A7%86%E8%A7%89%E7%BA%AA%E5%BF%B5%E5%86%8C/" style="color: #ffa2c4">视觉纪念册</a>
+        </span>
+        
+    </div>
+    <a href="/2024/05/11/gallery/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <span class="current">1</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">可乐崽zZ</div>
+        <div class="description">
+            <p>Description<br>…</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 挨踢民工团
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;可乐崽zZ
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>
